@@ -7,6 +7,12 @@
       <!--- Note that these columns be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
+      <!-- Id Column -->
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let course">{{ course._id }}</td>
+      </ng-container>
+
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Curso</th>
@@ -22,10 +28,37 @@
         </td>
       </ng-container>
 
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let course">{{ course.email }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef="">
+          <button mat-mini-fab color="accent" aria-label="Adicionar um curso">
+            <mat-icon (click)="onAdd()">add</mat-icon>
+          </button>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let course">
+          <button mat-mini-fab color="primary" aria-label="Editar curso">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-mini-fab color="warn" aria-label="Remover curso">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+
 
   <ng-template #loading>
     <div class="loading-spinner">
